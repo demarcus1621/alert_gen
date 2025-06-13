@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -137,6 +138,15 @@ func (beaconObj Beacon) GetPasswords() {
 		// DO SOMETHING
 	}
 	json.Unmarshal(byteConversion, &PASSWORDS)
+}
+
+func (beaconObj Beacon) SendData(data map[string]string) {
+	serialized, err := json.Marshal(data)
+	if err != nil {
+		// DO SOMETHING
+	}
+	dataBytes := bytes.NewReader(serialized)
+	http.Post("http://example.com", "application/json", dataBytes)
 }
 
 func main() {

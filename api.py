@@ -62,3 +62,15 @@ def send_password_list():
 def receive_data():
     pass
     # data = json.loads(request.body)
+
+@app.route('/api/v2/receive_file')
+def receive_file():
+    pass
+
+@app.route('api/v2/send_command')
+def send_command():
+    pass
+
+@app.route('api/v1/send_command')
+def send_random():
+    pass
