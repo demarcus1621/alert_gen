@@ -1,0 +1,2 @@
+# Alert Gen WIP
+This program is intended for security alert generation. It's designed to be deployed and run on a designated victim machine to ensure detection capability for common attack techniques. It simulates Command & Control (C2) activity and offers a few common attack techniques in an automated fashion.
